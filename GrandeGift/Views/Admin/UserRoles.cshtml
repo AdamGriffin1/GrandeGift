@@ -1,0 +1,36 @@
+﻿@model GrandeGift.Models.AdminViewModels.UserRolesViewModel
+
+@{
+    ViewData["Title"] = "UserRoles";
+}
+
+<h2>@Html.DisplayFor(model => model.UserName) Roles</h2>
+
+<form class="form-inline" asp-action="AssignRole" method="post">
+    <input type="hidden" asp-for="UserId" />
+    <div class="form-group">
+        <label for="Role">Role</label>
+        <select class="form-control" name="Role" id="Role" asp-items="@Model.Roles"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Role
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UserRoles)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

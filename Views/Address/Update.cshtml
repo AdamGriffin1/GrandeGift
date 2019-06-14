@@ -1,0 +1,29 @@
+﻿@model AddressUpdateViewModel
+
+<h1>Update Addresses</h1>
+
+<form asp-action="Update" asp-controller="Address" method="post" asp-antiforgery="true">
+
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="Location"></label>
+        <input asp-for="Location" />
+        <span asp-validation-for="Location"></span>
+    </div>
+
+    <div>
+        <label asp-for="State"></label>
+        <input asp-for="State" />
+        <span asp-validation-for="State"></span>
+    </div>
+    <div>
+        <input hidden="hidden" asp-for="AddressId" />
+    </div>
+    <div>
+        <input hidden="hidden" asp-for="ProfileId" />
+    </div>
+    <div>
+        <input type="submit" value="Save Changes" />
+    </div>
+</form>

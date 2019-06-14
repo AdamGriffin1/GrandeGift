@@ -1,0 +1,22 @@
+﻿@model OrderCreateViewModel
+
+
+<form asp-controller="Order" asp-action="Create" method="post" asp-antiforgery="true">
+    <div>
+        <label asp-for="AddressId"></label>
+        <select asp-for="AddressId" asp-items="@(new SelectList(Model.Addresses,"AddressId", "Location"))"></select>
+    </div>
+    <div>
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity" />
+    </div>
+    <div>
+        <input hidden="hidden" asp-for="HamperId" />
+        <input hidden="hidden" asp-for="OrderDate" />
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+
+</form>

@@ -1,0 +1,64 @@
+﻿@model CategoryDetailsViewModel
+
+<div>
+    <p>Name: @Model.Name</p>
+    <p>Details: @Model.Details</p>
+
+
+    <p>Total number of Hampers: @Model.Total</p>
+
+    <table class="table">
+        <tr>
+            <td>Image</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Details</td>
+            <td>Order</td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>Update </td>
+                <td>Delete </td>
+                <td>Restore</td>
+            }
+
+        </tr>
+        @foreach (var item in Model.Hampers)
+        {
+            @if (item.IsDeleted == false)
+            {
+                <tr>
+                    <td><img style="height:60px; width:50%;" src="~/images/@item.Image" /></td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.Details</td>
+                    <td>@Html.ActionLink("Order", "Create", "Order", new { id = item.HamperId })</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>@Html.ActionLink("Update", "Update", "Hamper", new { id = item.HamperId })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Hamper", new { id = item.HamperId })</td>
+                        <td>@Html.ActionLink("Restore", "Restore", "Hamper", new { id = item.HamperId })</td>
+                    }
+                </tr>
+            }
+            else
+            {
+                @if (User.IsInRole("Admin"))
+                {
+                    <tr>
+                        <td><img style="height:60px; width:50%;" src="~/images/@item.Image" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.Details</td>
+                        <td>@Html.ActionLink("Order", "Create", "Order", new { id = item.HamperId })</td>
+                        <td>@Html.ActionLink("Update", "Update", "Hamper", new { id = item.HamperId })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Hamper", new { id = item.HamperId }) Status:@item.IsDeleted</td>
+                        <td>@Html.ActionLink("Restore", "Restore", "Hamper", new { id = item.HamperId })</td>
+                    </tr>
+                }
+
+            }
+        }
+    </table>
+
+    @Html.ActionLink("Add Hamper", "Create", "Hamper", new { id = Model.CategoryId })
+</div>

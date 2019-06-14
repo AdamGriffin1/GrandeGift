@@ -1,0 +1,25 @@
+﻿@model AddressIndexViewModel
+
+@if (Model.Addresses != null)
+{
+    <table class="myTable">
+        <tr>
+            <td>Location</td>
+            <td>State</td>
+            <td>Update</td>
+        </tr>
+
+        @foreach (var item in Model.Addresses)
+        {
+
+        <tr>
+            <td>@item.Location</td>
+            <td>@item.State</td>
+            <td>@Html.ActionLink("Update", "Update", "Address", new { id = item.AddressId })</td>
+            <td>@Html.ActionLink("Delete", "Delete", "Address", new { id = item.AddressId })</td>
+        </tr>
+        }
+
+    </table>
+}
+@Html.ActionLink("Add Address", "Add", "Address", new { id = Model.ProfileId })

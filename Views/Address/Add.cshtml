@@ -1,0 +1,18 @@
+﻿@model AddressAddViewModel
+
+<form asp-controller="Address" asp-action="Add" method="post" asp-antiforgery="true">
+    <div>
+        <label asp-for="Location"></label>
+        <input asp-for="Location" />
+    </div>
+    <div>
+        <label asp-for="State"></label>
+        <input asp-for="State" />
+    </div>
+    <div>
+        <input hidden="hidden" asp-for="ProfileId" />
+    </div>
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>

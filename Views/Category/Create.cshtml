@@ -1,0 +1,33 @@
+﻿@model CategoryCreateViewModel
+
+<form asp-controller="Category" asp-action="Create" method="Post" asp-antiforgery="true">
+
+    <div asp-validation-summary="ModelOnly">
+
+    </div>
+
+    <div>
+        <h5 style="color:red">  @ViewBag.MyMessage </h5>
+    </div>
+
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span style="color:red" asp-validation-for="Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="Details"></label>
+        <input asp-for="Details" />
+        <span style="color:red" asp-validation-for="Details"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+
+</form>
+
+
+
+

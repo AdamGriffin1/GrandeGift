@@ -1,0 +1,23 @@
+﻿@model CategoryIndexViewModel
+<table class="table">
+    @foreach (var item in Model.Categories)
+    {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Details</td>
+        <td>@Html.ActionLink("more", "Details", "Category", new { id = item.CategoryId })</td>
+        @if (User.IsInRole("Admin"))
+        {
+            <td>@Html.ActionLink("Delete", "Delete", "Category", new { id = item.CategoryId })</td>
+        }
+
+    </tr>
+    }
+</table>
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" asp-controller="Category">Add Category</a>
+    }
+}
